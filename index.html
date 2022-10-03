@@ -3,7 +3,8 @@
 <head>
 <title>Sort a HTML Table Alphabetically</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
 table {
   border-spacing: 0;
@@ -25,11 +26,17 @@ tr:nth-child(even) {
   background-color: #f2f2f2
 }
 p {text-align: center;font-family: sans-serif;font-size: 22px;text-transform: uppercase;line-height: 2.3em;}
+input {width: 150px;height: 40px;text-align: center;}
+span {font-family: sans-serif;font-weight: bold;}
 </style>
 </head>
 <body>
 
 <p><strong>Click the headers to sort the table.</strong></p>
+
+   <span>Search by S.no, Name, Country, Count, Date</span>
+   <input id="myInput" class="fortextbox"  type="text" placeholder="Search.." />
+   <br /><br /><br />
 
 
 <table id="myTable">
@@ -150,5 +157,25 @@ function sortTable(n) {
 }
 </script>
 
+<script type="text/javascript">
+        $(document).ready(function () {
+
+$("#flip").click(function () {
+            $("#panel").slideToggle("slow");
+        });
+
+        $("#flip1").click(function () {
+            $("#panel1").slideToggle("slow");
+        });
+
+           //Filter table
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+ });
+</script>
 </body>
 </html>
